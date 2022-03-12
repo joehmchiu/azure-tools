@@ -1,0 +1,24 @@
+#!/bin/sh
+
+tmp=/tmp/tmp-za-resource-type
+
+types=$(az resource list | jq '.[].type' | sort -u)
+
+for t in ${types[*]}
+do
+	echo "Resource Name: $t"
+done
+
+read -p "Choose a resource type: " rt
+
+type=$(echo $rt | sed 's/"//g')
+echo "az resource list --name $type"
+az resource list --resource-type "$type" | tee $tmp
+
+cat $tmp
+
+echo "The Name of type:"
+cat $tmp | jq ".[].name"
+# cat $tmp | jq '.[].name + ": " + .[].id'
+
+echo "cat $tmp for more queries"

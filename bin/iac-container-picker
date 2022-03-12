@@ -1,0 +1,49 @@
+#!/bin/bash
+
+. ~/bin/func
+
+# c=( $(docker ps --format "{{.Image}}") )
+c=( $(docker ps -a | tail -n +2 | awk '{print $1}') )
+m=( $(docker ps -a | tail -n +2 | awk '{print $2}') )
+
+
+# docker ps --format "table {{.ID}} - {{.Names}}: {{.Status}}"
+if [ -z "$1" ]; then
+  max=-1
+  for key in "${m[@]}"; do
+    len=${#key}
+    ((len > max)) && max=$len
+  done
+  len=${#c[*]}
+  echo "usage: ${0##*/} [1|..|$len]"
+  nn=0
+  max=$(($max))
+  for i in ${c[@]}
+  do
+    ((nn=$nn+1))
+    img=$(docker ps -a | grep "$i" | awk '{print $2}')
+    stat=$(docker ps --format '{{.ID}} {{.Status}}' | grep $i | awk '{$1=""; print $0}')
+    printf "$yc%03d.$rs $rc%s$rs - $cc%-"$max.$max"s$rs %s\n" $nn $i "$img" "$stat"
+  done
+  exit
+else
+  re='^[0-9]+$'
+  if [[ $1 =~ $re ]] ; then
+    n=$(($1-1))
+    id=${c[$n]}
+    img=$(docker ps --format '{{.ID}} {{.Image}}' | grep $id | awk '{print $2}')
+  else
+    if [ "${#1}" == "12" ]; then
+      id=$1
+      img=$(docker ps --format '{{.ID}} {{.Image}}' | grep $id | awk '{print $2}')
+    else
+      img=$1
+      id=$(docker ps --format '{{.ID}} {{.Image}}' | grep "$img" | awk '{print $1}')
+    fi
+  fi
+fi
+
+echo "Container img: $cc$img$rs"
+echo "Container ID:  $rc$id$rs"
+docker exec -it $id bash
+

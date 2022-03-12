@@ -1,0 +1,28 @@
+#!/bin/sh
+
+HF='["Name","Location","Status"],(.[] | [.name,.location,.properties.provisioningState]) | @csv'
+
+clear -x
+# tput reset
+# az account set --subscription "JoeC Azure Demo"
+
+if [ -z $1 ]; then
+  az group list | jq -r "$HF" | ~/azure/csv-new-table
+else
+  az group list $1 -d | jq -r "$HF" | ~/azure/csv-new-table
+fi
+
+# [
+#   {
+#     "id": "/subscriptions/dafdecca-01a5-4a82-bba0-489c3c47f4d2/resourceGroups/rg-net-vwan-001",
+#     "location": "australiaeast",
+#     "managedBy": null,
+#     "name": "rg-net-vwan-001",
+#     "properties": {
+#       "provisioningState": "Deleting"
+#     },
+#     "tags": null,
+#     "type": "Microsoft.Resources/resourceGroups"
+#   }
+# ]
+

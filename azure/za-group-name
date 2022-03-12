@@ -1,0 +1,27 @@
+#!/bin/sh
+
+. ~/azure/conf
+
+tmp=/tmp/tmp-za-group-name
+az group list | tee $tmp
+
+names=$(cat $tmp | jq '.[].name' | sort -u)
+
+for n in ${names[*]}
+do
+	echo "${cyan}Group Name: $n${reset}"
+done
+
+read -p "Choose a group: " rg
+
+name=$(echo $rg | sed 's/"//g')
+echo "az group show --resource-group $name"
+az group show --resource-group "$name"
+
+# cat $tmp
+
+# echo "The Name of type:"
+# cat $tmp | jq ".[].name"
+# cat $tmp | jq '.[].name + ": " + .[].id'
+echo 
+echo "${yellow}-- cat $tmp for more queries${reset}"

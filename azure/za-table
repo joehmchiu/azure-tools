@@ -1,0 +1,46 @@
+#!/bin/bash
+
+. ~/bin/func
+
+vmfile=/tmp/vmcsv
+rgfile=/tmp/rgcsv
+
+while true
+do
+  az vm list -d > $vmfile
+  az group list > $rgfile
+
+  clear && printf '\e[3J'
+
+  echo $yc"Virtual Machine List"$cs
+  HF='["Name","Resource Group","Status","Private IP","Public IP","Location"],(.[] | [.name,.resourceGroup,.powerState,.privateIps,.publicIps,.location]) | @csv'
+
+  # az account set --subscription "JoeC Azure Demo"
+
+  res=$(cat $vmfile)
+  con=$(echo $con | jq '.[]')
+  if [ "$res" == "[]" ]; then
+    # echo "-- No Virtual Machines found --"
+    echo '[["Description"],["No Virtual Machines found"]]' | jq -r '.[] | @csv' | csv-new-table
+  else
+    echo $res | jq -r "$HF" | ~/azure/csv-new-table
+  fi
+
+  echo $yc"Resource Group List"$cs
+  HF='["Name","Location","Status"],(.[] | [.name,.location,.properties.provisioningState]) | @csv'
+
+  # tput reset
+  # az account set --subscription "JoeC Azure Demo"
+
+  res=$(cat $rgfile)
+  con=$(echo $res | jq '.[]')
+  if [ "$res" == "[]" ]; then
+    # echo "-- No Resource Groups found --"
+    echo '[["Description"],["No Resource Groups found "]]' | jq -r '.[] | @csv' | csv-new-table
+  else
+    echo $res | jq -r "$HF" | ~/azure/csv-new-table
+  fi
+
+  sleep 6
+done
+
