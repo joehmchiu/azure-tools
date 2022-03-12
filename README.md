@@ -12,4 +12,5 @@
 * export PATH to the directories 
 
 ## Run
-./kv.py  [ secret 2 ]  [ secret 2 ] ...
+* get key vault secret as a Json array
+** ./kv.py  [ secret 2 ]  [ secret 2 ] ...
