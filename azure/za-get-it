@@ -1,0 +1,32 @@
+#!/usr/bin/perl
+
+use JSON;
+use Data::Dumper;
+
+$rsname = shift || exit print "Error: resource name not found!\n";
+$key = shift;
+
+@cmd = (
+  "az network public-ip list",
+  "az resource list",
+  "az group list",
+);
+
+foreach $cmd (@cmd) {
+  @j = `$cmd`;
+  chomp @j;
+  $str = join('', @j);
+
+  $j = from_json($str);
+
+  foreach $h (@$j) {
+    if ($h->{name} =~ /$rsname/i) {
+      print Dumper $h;
+      if ($key) {
+        print "$key: ", $h->{$key},"\n";
+      }
+      exit;
+    }
+  }
+}
+

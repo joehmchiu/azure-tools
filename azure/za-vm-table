@@ -1,0 +1,11 @@
+#!/bin/sh
+
+HF='["Name","Resource Group","Status","Private IP","Public IP","Location"],(.[] | [.name,.resourceGroup,.powerState,.privateIps,.publicIps,.location]) | @csv'
+
+# az account set --subscription "JoeC Azure Demo"
+
+if [ -z $1 ]; then
+  az vm list -d | jq -r "$HF" | ~/azure/csv-new-table
+else
+  az vm list -g $1 -d | jq -r "$HF" | ~/azure/csv-new-table
+fi

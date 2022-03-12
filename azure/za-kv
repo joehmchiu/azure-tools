@@ -1,0 +1,5 @@
+#!/bin/bash
+
+kvn=$1
+key=$2
+az keyvault secret show -n $key --vault-name $kvn | jq '. | { name:.name,value:.value}'
