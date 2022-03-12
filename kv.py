@@ -8,7 +8,7 @@ except:
     print("utilities not found")
 
 arr = list()
-kvn = "kv-box-001" # the existing key vault in azure
+kvn = "kv-box-001" # the existing key vault name in azure
 
 for key in sys.argv[1:]:
     res = u.az.kv(kvn, key)
