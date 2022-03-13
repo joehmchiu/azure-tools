@@ -13,8 +13,12 @@
   * sudo apt install jq
 
 ## Install
-* copy directories bin, azure to system under ~/. eg. cp -rf azure ~/.
+* copy directories bin, azure to system
+  * cp -rf azure ~/.
+  * cp -rf bin ~/.
 * export PATH to the directories 
+  * export PATH="$PATH:~/bin"
+  * export PATH="$PATH:~/azure"
 
 ## Run
 * get key vault secret as a Json array
