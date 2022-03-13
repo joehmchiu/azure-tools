@@ -2,7 +2,7 @@
 import sys
 
 try:
-  sys.path.append('/home/joechiu/utils')
+  sys.path.append('./utils')
   import u
 except:
   print('{"error":"utilities not found"}')
