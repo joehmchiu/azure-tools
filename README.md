@@ -3,6 +3,7 @@
 * Ubuntu / Linux - 18.04LTS or 20.04
 * bash
 * python 3.6.9
+* ansible 2.9.x
 * az cli 
   * python3 install azure-cli
 * perl 
