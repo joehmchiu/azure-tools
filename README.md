@@ -13,7 +13,7 @@
   * sudo apt install jq
 
 ## Install
-* copy directories bin, azure, utils to system
+* copy directories bin, azure to system under ~/. eg. cp -rf azure ~/.
 * export PATH to the directories 
 
 ## Run
