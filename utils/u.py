@@ -27,7 +27,7 @@ class js():
 
 class az():
   def kv(kvn, key):
-    return os.popen("~/azure/za-kv %s %s 2>/dev/null" % (kvn, key)).read()
+    return os.popen("../azure/za-kv %s %s 2>/dev/null" % (kvn, key)).read()
 
   def kvlist(kvn):
-    return os.popen("~/azure/za-kv-list %s 2>/dev/null" % (kvn)).read()
+    return os.popen("../azure/za-kv-list %s 2>/dev/null" % (kvn)).read()
