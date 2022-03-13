@@ -19,3 +19,5 @@
 ## Run
 * get key vault secret as a Json array
   * ./kv.py  [ secret 2 ]  [ secret 2 ] ...
+* assign screts to ansible playbook
+  * ansible-playbook secret-playbook.yml
