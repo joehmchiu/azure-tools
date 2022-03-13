@@ -1,0 +1,7 @@
+#!/bin/bash
+
+kvn=$1
+[ -z $kvn ] && { echo "Key vault not found"; exit; }
+
+az keyvault secret list --vault-name kv-box-001 | jq '[ .[].name ]'
+
