@@ -16,15 +16,15 @@ except:
   u.js.pp({"error":"option not found"})
   sys.exit()
 
-def fill(a):
+def fillin(a):
   for key in a:
     res = u.az.kv(kvn, key)
     h = u.js.loads(res)
     arr.append(h)
 
 if opt.lower() in ['*','all']:
-  fill(u.js.loads(u.az.kvlist(kvn)))
+  fillin(u.js.loads(u.az.kvlist(kvn)))
 else:
-  fill(sys.argv[1:])
+  fillin(sys.argv[1:])
 
 u.js.pp(arr)
