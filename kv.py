@@ -9,7 +9,8 @@ except:
   sys.exit()
 
 arr = list()
-kvn = "kv-box-001" # the existing key vault name in azure
+# update the keyvault name in the utility conf class
+kvn = u.conf.kvn 
 try:
   opt = sys.argv[1]
 except:

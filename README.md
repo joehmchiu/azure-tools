@@ -11,6 +11,8 @@
   * cpanm install Text::ANSITable
 * jq
   * sudo apt install jq
+* update the keyvault name in the utility conf class. 
+  * edit utils/u.py
 
 ## Install
 * copy directories bin, azure to system
