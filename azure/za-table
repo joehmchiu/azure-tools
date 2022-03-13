@@ -18,7 +18,6 @@ do
   # az account set --subscription "JoeC Azure Demo"
 
   res=$(cat $vmfile)
-  con=$(echo $con | jq '.[]')
   if [ "$res" == "[]" ]; then
     # echo "-- No Virtual Machines found --"
     echo '[["Description"],["No Virtual Machines found"]]' | jq -r '.[] | @csv' | csv-new-table
@@ -33,7 +32,6 @@ do
   # az account set --subscription "JoeC Azure Demo"
 
   res=$(cat $rgfile)
-  con=$(echo $res | jq '.[]')
   if [ "$res" == "[]" ]; then
     # echo "-- No Resource Groups found --"
     echo '[["Description"],["No Resource Groups found "]]' | jq -r '.[] | @csv' | csv-new-table
