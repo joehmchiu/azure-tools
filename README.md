@@ -17,8 +17,7 @@
 
 ## Install
 * copy directories bin, azure to system
-  * cp -rf azure ~/.
-  * cp -rf bin ~/.
+  * cp -rf bin ~/. (optional)
 * export PATH to the directories 
   * export PATH="$PATH:~/bin"
   * export PATH="$PATH:~/azure"
