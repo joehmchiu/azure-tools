@@ -17,10 +17,11 @@
 
 ## Install
 * copy directories bin, azure to system
+  * cp -rf azure ~/. (optional)
   * cp -rf bin ~/. (optional)
 * export PATH to the directories 
-  * export PATH="$PATH:~/bin"
-  * export PATH="$PATH:~/azure"
+  * export PATH="$PATH:~/bin" (optional)
+  * export PATH="$PATH:~/azure" (optional)
 
 ## Run
 * get key vault secret as a Json array
