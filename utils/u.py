@@ -20,17 +20,19 @@ class js():
     if not js.validate(s):
       if s:
         return {"error":"Invalid or malformatted JSON - %s" % s}
+      elif not s:
+        return {"error":"No results found"}
       else:
         return {"error":"Invalid or malformatted JSON"}
     else:
       return json.loads(s)
 
 class az():
-  def kv(kvn, key):
-    return os.popen("./azure/za-kv %s %s 2>/dev/null" % (kvn, key)).read()
+  def kv(path, kvn, key):
+    return os.popen("%s/azure/za-kv %s %s 2>/dev/null" % (path, kvn, key)).read()
 
-  def kvlist(kvn):
-    return os.popen("./azure/za-kv-list %s 2>/dev/null" % (kvn)).read()
+  def kvlist(path, kvn):
+    return os.popen("%s/azure/za-kv-list %s 2>/dev/null" % (path, kvn)).read()
 
 class conf():
   kvn = "kv-box-001" # the existing key vault name in azure

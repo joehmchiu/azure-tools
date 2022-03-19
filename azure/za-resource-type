@@ -2,7 +2,7 @@
 
 tmp=/tmp/tmp-za-resource-type
 
-types=$(az resource list | jq '.[].type' | sort -u)
+types=$(/usr/local/bin/az resource list | jq '.[].type' | sort -u)
 
 for t in ${types[*]}
 do
@@ -13,7 +13,7 @@ read -p "Choose a resource type: " rt
 
 type=$(echo $rt | sed 's/"//g')
 echo "az resource list --name $type"
-az resource list --resource-type "$type" | tee $tmp
+/usr/local/bin/az resource list --resource-type "$type" | tee $tmp
 
 cat $tmp
 

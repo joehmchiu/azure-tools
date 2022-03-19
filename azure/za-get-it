@@ -7,9 +7,9 @@ $rsname = shift || exit print "Error: resource name not found!\n";
 $key = shift;
 
 @cmd = (
-  "az network public-ip list",
-  "az resource list",
-  "az group list",
+  "/usr/local/bin/az network public-ip list",
+  "/usr/local/bin/az resource list",
+  "/usr/local/bin/az group list",
 );
 
 foreach $cmd (@cmd) {

@@ -1,5 +1,5 @@
 #!/bin/sh
 
-az resource list
+/usr/local/bin/az resource list
 
 # az resource list | jq '.[].name' | sort -u

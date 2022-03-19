@@ -7,9 +7,9 @@ clear -x
 # az account set --subscription "JoeC Azure Demo"
 
 if [ -z $1 ]; then
-  az group list | jq -r "$HF" | ~/azure/csv-new-table
+  /usr/local/bin/az group list | jq -r "$HF" | ~/azure/csv-new-table
 else
-  az group list $1 -d | jq -r "$HF" | ~/azure/csv-new-table
+  /usr/local/bin/az group list $1 -d | jq -r "$HF" | ~/azure/csv-new-table
 fi
 
 # [

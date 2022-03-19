@@ -22,12 +22,12 @@ except:
 
 def fillin(a):
   for key in a:
-    res = u.az.kv(kvn, key)
+    res = u.az.kv(path, kvn, key)
     h = u.js.loads(res)
     arr.append(h)
 
 if opt.lower() in ['*','all']:
-  fillin(u.js.loads(u.az.kvlist(kvn)))
+  fillin(u.js.loads(u.az.kvlist(path, kvn)))
 else:
   fillin(sys.argv[1:])
 

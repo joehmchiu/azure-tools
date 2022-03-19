@@ -6,4 +6,4 @@ read -p "VNet Name: " vnet
 rg=$(echo $rg | sed 's/"//g')
 vnet=$(echo $vnet | sed 's/"//g')
 
-az network vnet list-available-ips -g $rg -n $vnet
+/usr/local/bin/az network vnet list-available-ips -g $rg -n $vnet

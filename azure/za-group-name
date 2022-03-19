@@ -3,7 +3,7 @@
 . ~/azure/conf
 
 tmp=/tmp/tmp-za-group-name
-az group list | tee $tmp
+/usr/local/bin/az group list | tee $tmp
 
 names=$(cat $tmp | jq '.[].name' | sort -u)
 
@@ -15,8 +15,8 @@ done
 read -p "Choose a group: " rg
 
 name=$(echo $rg | sed 's/"//g')
-echo "az group show --resource-group $name"
-az group show --resource-group "$name"
+echo "/usr/local/bin/az group show --resource-group $name"
+/usr/local/bin/az group show --resource-group "$name"
 
 # cat $tmp
 

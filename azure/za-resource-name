@@ -2,7 +2,7 @@
 
 . ~/azure/conf
 
-names=$(az resource list | jq '.[].name' | sort -u)
+names=$(/usr/local/bin/az resource list | jq '.[].name' | sort -u)
 
 for n in ${names[*]}
 do
@@ -13,5 +13,5 @@ read -p "Choose a resource name: " rn
 
 name=$(echo $rn | sed 's/"//g')
 echo "${yellow}az resource list --name $name${reset}"
-az resource list --name "$name"
+/usr/local/bin/az resource list --name "$name"
 
