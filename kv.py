@@ -2,11 +2,14 @@
 import sys
 
 try:
-  sys.path.append('./utils')
+  path = os.path.dirname(os.path.abspath(__file__))
+  sys.path.append(path + "/utils")
   import u
 except:
   print('{"error":"utilities not found"}')
   sys.exit()
+
+os.chdir(path)
 
 arr = list()
 # update the keyvault name in the utility conf class
