@@ -1,5 +1,7 @@
 # azure-tools
 ## Prerequisites
+* Azure keyvault
+* add a secret to keyvault: helloworld: kAGNihurXfZEPXVBRTXR037Ls9z8fg5tcMqmHjiqJWg=
 * Ubuntu / Linux - 18.04LTS or 20.04
 * bash
 * python 3.6.9
@@ -24,6 +26,8 @@
   * export PATH="$PATH:~/azure" (optional)
 
 ## Run
+* update the name of Azure key vault in the u.py conf callse
+  * kvn = "name of keyvault" # the existing key vault name in azure
 * get key vault secret as a Json array
   * ./kv.py  [ secret 2 ]  [ secret 2 ] ...
   * ./kv.py  [ '*' | all ]
