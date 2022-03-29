@@ -3,5 +3,5 @@
 kvn=$1
 [ -z $kvn ] && { echo "Key vault not found"; exit; }
 
-/usr/local/bin/az keyvault secret list --vault-name kv-box-001 | jq '[ .[].name ]'
+/usr/local/bin/az keyvault secret list --vault-name $kvn | jq '[ .[].name ]'
 

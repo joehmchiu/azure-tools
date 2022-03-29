@@ -35,7 +35,7 @@ class az():
     return os.popen("%s/azure/za-kv-list %s 2>/dev/null" % (path, kvn)).read()
 
 class conf():
-  kvn = "kv-box-001" # the existing key vault name in azure
+  kvn = "joe-khq-vault" # the existing key vault name in azure
 
 
 
