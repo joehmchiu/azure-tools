@@ -16,12 +16,12 @@ class js():
   def pp(d):
     print(json.dumps(d, indent = ident_gap))
 
-  def loads(s):
+  def loads(s, k="error"):
     if not js.validate(s):
       if s:
         return {"error":"Invalid or malformatted JSON - %s" % s}
       elif not s:
-        return {"error":"No results found"}
+        return {k:"No results found"}
       else:
         return {"error":"Invalid or malformatted JSON"}
     else:
@@ -35,7 +35,7 @@ class az():
     return os.popen("%s/azure/za-kv-list %s 2>/dev/null" % (path, kvn)).read()
 
 class conf():
-  kvn = "joe-khq-vault" # the existing key vault name in azure
+  kvn = "dev2-khq-vault" # the existing key vault name in azure
 
 
 
