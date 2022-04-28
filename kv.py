@@ -34,6 +34,9 @@ except:
   sys.exit()
 
 def fillin(a):
+  if not a: 
+    u.js.pp({"error":"option not found"})
+    sys.exit()
   for key in a:
     res = u.az.kv(path, kvn, key)
     h = u.js.loads(res, key)
