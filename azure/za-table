@@ -18,9 +18,12 @@ do
   # az account set --subscription "JoeC Azure Demo"
 
   res=$(cat $vmfile)
-  if [ "$res" == "[]" ]; then
+  con=$(echo $con | jq '.[]')
+  if [ "$res" == "[]" ] || [ "$res" == "" ]; then
     # echo "-- No Virtual Machines found --"
-    echo '[["Description"],["No Virtual Machines found"]]' | jq -r '.[] | @csv' | csv-new-table
+    echo '[["Description"],["No Virtual Machines found"]]' | jq -r '.[] | @csv' | ~/azure/csv-new-table
+  elif [ "$res" == "" ]; then
+    echo '[["Description"],["Cannot get Virtual Machine details"]]' | jq -r '.[] | @csv' | ~/azure/csv-new-table
   else
     echo $res | jq -r "$HF" | ~/azure/csv-new-table
   fi
@@ -30,11 +33,14 @@ do
 
   # tput reset
   # az account set --subscription "JoeC Azure Demo"
-
+  
   res=$(cat $rgfile)
+  con=$(echo $res | jq '.[]')
   if [ "$res" == "[]" ]; then
     # echo "-- No Resource Groups found --"
-    echo '[["Description"],["No Resource Groups found "]]' | jq -r '.[] | @csv' | csv-new-table
+    echo '[["Description"],["No Resource Groups found"]]' | jq -r '.[] | @csv' | ~/azure/csv-new-table
+  elif [ "$res" == "" ]; then
+    echo '[["Description"],["Cannot get Resource Group details"]]' | jq -r '.[] | @csv' | ~/azure/csv-new-table
   else
     echo $res | jq -r "$HF" | ~/azure/csv-new-table
   fi
